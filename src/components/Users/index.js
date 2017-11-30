@@ -1,5 +1,5 @@
 import React from 'react'
-import {actions} from 'mirrorx'
+import {actions,connect} from 'mirrorx'
 import {Table, Pagination, Popconfirm, Button} from 'antd'
 import {PAGE_SIZE} from '../../constants'
 import UserModal from '../UserModal'
@@ -73,5 +73,4 @@ const Users = ({list: dataSource, loading, total, page: current}) => {
     </div>
   )
 }
-
-export default Users
+export default connect()(Users);

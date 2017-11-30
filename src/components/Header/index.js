@@ -16,8 +16,8 @@ const Header = ({location}) => (
     <MenuItem key="/users">
       <NavLink to="/users"><Icon type="bars" />Users</NavLink>
     </MenuItem>
-    <MenuItem key="/not-found">
-      <NavLink to="/not-found"><Icon type="frown-circle" />404</NavLink>
+    <MenuItem key="/test">
+      <NavLink to="/test"><Icon type="frown-circle" />test</NavLink>
     </MenuItem>
     <MenuItem key="/mirror">
       <a target="_blank" href="https://github.com/mirrorjs/mirror">Mirror</a>

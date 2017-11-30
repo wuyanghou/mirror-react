@@ -28,18 +28,39 @@ const config = {
             loader: 'style-loader',
           },
           {
+            loader: 'css-loader'
+          }
+        ]
+      },
+      {
+        test:/\.less$/,
+        include: [/node_modules/],
+        use:[
+          {
+            loader: 'style-loader'
+          },
+          {
             loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
           }
         ]
       },
       {
         test: /\.less$/,
+        exclude: /node_modules/,
         use: [
           {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader',
+            options:{
+              modules:true,
+              importLoaders:1,
+              localIdentName:'[local]_[hash:base64:5]',
+            },
           },
           {
             loader: 'less-loader',
