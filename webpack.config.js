@@ -73,20 +73,26 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
 
-  config.devtool = 'source-map'
+  config.devtool = ''
 
   // Exclude react and react-dom in the production bundle
   config.externals = {
     'react': 'React',
     'react-dom': 'ReactDOM'
   }
+  config.plugins = [
+    new webpack.DllReferencePlugin({
+      context:__dirname,
+      manifest: require('./manifest.json')
+    })
+  ]
 
 } else {
 
-  config.devtool = 'cheap-module-source-map'
+  config.devtool = ''
 
   config.devServer = {
-    contentBase: path.resolve(__dirname, 'public'),
+    contentBase: path.resolve(__dirname),
     clientLogLevel: 'none',
     quiet: true,
     port: 8000,
@@ -100,7 +106,11 @@ if (process.env.NODE_ENV === 'production') {
   // HMR support
   config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new webpack.DllReferencePlugin({
+      context:__dirname,
+      manifest: require('./manifest.json')
+    })
   ]
 }
 

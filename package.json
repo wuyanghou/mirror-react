@@ -4,11 +4,13 @@
   "description": "A project based on Mirror framework",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "cross-env NODE_ENV=production webpack -p"
+    "build": "cross-env NODE_ENV=production webpack -p",
+    "buildDLL": "webpack --config webpack.dll.config.js"
   },
   "dependencies": {
     "antd": "^2.13.0",
     "babel-runtime": "^6.23.0",
+    "jquery": "^3.2.1",
     "mirrorx": "^0.2.0",
     "natty-fetch": "^2.5.2",
     "prop-types": "^15.5.10",
