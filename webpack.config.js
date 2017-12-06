@@ -1,5 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
 
 const config = {
   // in development,
@@ -11,6 +14,13 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.js',
     publicPath: '/'
+  },
+  resolve: {
+    extensions: ['.js', '.json'],
+    alias: {
+      '@': resolve('src'),
+      '@static': resolve('static'),
+    }
   },
   module: {
     rules: [
@@ -32,21 +42,21 @@ const config = {
           }
         ]
       },
-      {
-        test:/\.less$/,
-        include: [/node_modules/],
-        use:[
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-          }
-        ]
-      },
+      // {
+      //   test:/\.less$/,
+      //   include: [/node_modules/],
+      //   use:[
+      //     {
+      //       loader: 'style-loader'
+      //     },
+      //     {
+      //       loader: 'css-loader',
+      //     },
+      //     {
+      //       loader: 'less-loader',
+      //     }
+      //   ]
+      // },
       {
         test: /\.less$/,
         exclude: /node_modules/,
@@ -66,6 +76,30 @@ const config = {
             loader: 'less-loader',
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'static/img/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'static/media/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'static/fonts/[name].[hash:7].[ext]'
+        }
       }
     ]
   }
@@ -100,6 +134,12 @@ if (process.env.NODE_ENV === 'production') {
     hot: true,
     historyApiFallback: {
       disableDotRule: true
+    },
+    proxy: {
+      '/api': {
+        // target: 'https://other-server.example.com',
+        // secure: false
+      }
     }
   }
 
