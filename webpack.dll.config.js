@@ -12,7 +12,6 @@ module.exports = {
   entry:{
     vendor: vendors,
   },
-  // 输出到static文件夹下面， 补充知识[vue项目目录之static]
   output: {
     path: __dirname,
     filename: '[name].[hash].js',
