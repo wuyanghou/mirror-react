@@ -3,7 +3,8 @@ import React from 'react'
 import mirror, {render} from 'mirrorx'
 import App from './components/App'
 
-import './index.css'
+import './index.less'
+
 import users from './models/users';
 
 mirror.model(users);

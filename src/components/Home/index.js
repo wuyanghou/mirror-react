@@ -1,6 +1,5 @@
 import React from 'react'
 import './style.less'
-
 const Home = () => (
   <div className="home">
     <h2>Welcome to Mirror!</h2>

@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './styles.less'
 import jquery from 'jquery';
-console.log(styles,8989);
-
 class Test extends React.Component{
   constructor(props){
     super(props);

@@ -1,8 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
-function resolve (dir) {
+
+function resolve(dir) {
   return path.join(__dirname, dir)
 }
+
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
@@ -62,22 +64,23 @@ const config = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[local]_[hash:base64:5]',
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              }
             },
-          },
-          {
-            loader: 'less-loader',
-          }
-        ]
+            {
+              loader: 'less-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -121,7 +124,7 @@ if (process.env.NODE_ENV === 'production') {
       context: __dirname,
       manifest: require('./manifest.json')
     }),
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin({filename:"[name].[hash:5].css", allChunks: true}),
   ]
 
 } else {
@@ -148,6 +151,7 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin("styles.css")
   ]
 }
 
