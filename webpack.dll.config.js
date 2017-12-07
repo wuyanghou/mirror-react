@@ -5,7 +5,7 @@ const path = require('path')
 const vendors = [
  'jquery',
   'react',
-  'antd'
+  'react-dom'
 ];
 module.exports = {
   // 读取library.entry 里配置的node_module

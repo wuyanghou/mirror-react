@@ -1,5 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 const config = {
   // in development,
@@ -33,19 +35,19 @@ const config = {
         ]
       },
       {
-        test:/\.less$/,
+        test: /\.less$/,
         include: [/node_modules/],
-        use:[
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'less-loader',
+            }
+          ]
+        })
       },
       {
         test: /\.less$/,
@@ -56,10 +58,10 @@ const config = {
           },
           {
             loader: 'css-loader',
-            options:{
-              modules:true,
-              importLoaders:1,
-              localIdentName:'[local]_[hash:base64:5]',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[local]_[hash:base64:5]',
             },
           },
           {
@@ -76,21 +78,20 @@ if (process.env.NODE_ENV === 'production') {
   config.devtool = ''
 
   // Exclude react and react-dom in the production bundle
-  config.externals = {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
-  }
+  // config.externals = {
+  //   'react': 'React',
+  //   'react-dom': 'ReactDOM'
+  // }
   config.plugins = [
     new webpack.DllReferencePlugin({
-      context:__dirname,
+      context: __dirname,
       manifest: require('./manifest.json')
-    })
+    }),
+    new ExtractTextPlugin("styles.css"),
   ]
 
 } else {
-
   config.devtool = ''
-
   config.devServer = {
     contentBase: path.resolve(__dirname),
     clientLogLevel: 'none',
@@ -107,10 +108,6 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.DllReferencePlugin({
-      context:__dirname,
-      manifest: require('./manifest.json')
-    })
   ]
 }
 
