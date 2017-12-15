@@ -3,9 +3,7 @@ import React from 'react'
 import mirror, {render} from 'mirrorx'
 import App from './components/App'
 
-import './index.less'
-
-import users from './models/users';
+import users from './models/index';
 
 mirror.model(users);
 mirror.defaults({

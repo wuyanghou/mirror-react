@@ -14,11 +14,11 @@ module.exports = {
   },
   output: {
     path: __dirname,
-    filename: '[name].[hash].js',
+    filename: '[name].js',
     library: '[name]_[hash]',
   },
   plugins: [
-    // 文件输出到 ./build/manifest.json 中
+    // 文件输出到 ./manifest.json 中
     new webpack.DllPlugin({
       path: 'manifest.json',
       name: '[name]_[hash]',

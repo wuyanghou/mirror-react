@@ -1,7 +1,6 @@
 import React from 'react'
 import {actions,connect} from 'mirrorx'
 import {Table, Pagination, Popconfirm, Button} from 'antd'
-import {PAGE_SIZE} from '../../constants'
 import UserModal from '../UserModal'
 import './style.less'
 
@@ -66,7 +65,7 @@ const Users = ({list: dataSource, loading, total, page: current}) => {
           className="ant-table-pagination"
           total={total}
           current={current}
-          pageSize={PAGE_SIZE}
+          pageSize={100}
           onChange={onPageChange}
         />
       </div>

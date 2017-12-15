@@ -1,5 +1,4 @@
 import nattyFetch from 'natty-fetch'
-import {PAGE_SIZE} from '../constants'
 
 const URL_PREFIX = 'http://jsonplaceholder.typicode.com'
 

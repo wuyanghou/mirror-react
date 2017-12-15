@@ -1,5 +1,5 @@
 import {actions} from 'mirrorx'
-import * as api from '../services/users'
+import * as api from '../services/index'
 
 export default {
   name: 'users',

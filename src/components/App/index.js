@@ -2,7 +2,6 @@ import React from 'react'
 import {Router, Route} from 'mirrorx'
 import asyncComponent from '../../asyncComponent'
 
-console.log(asyncComponent,999);
 const Header=asyncComponent(()=>import('../Header'));
 const Home=asyncComponent(()=>import('../Home'));
 const Users=asyncComponent(()=>import('../Users'));
