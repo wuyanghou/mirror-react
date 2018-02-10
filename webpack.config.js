@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -26,6 +27,7 @@ const config = {
     alias: {
       '@': resolve('src'),
       '@static': resolve('static'),
+      'UTIL': resolve('src/utils')
     }
   },
   module: {
@@ -66,23 +68,26 @@ const config = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true
-              }
-            },
-            {
-              loader: 'less-loader',
-              options: {
-                sourceMap: true
-              }
+        // use: ExtractTextPlugin.extract({
+        //   fallback: 'style-loader',
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
             }
-          ]
-        })
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+        // })
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -110,7 +115,7 @@ const config = {
       }
     ]
   },
-  plugins:[
+  plugins: [
     //自动在打包出来的文件夹里面生成index.html
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -130,7 +135,7 @@ if (process.env.NODE_ENV === 'production') {
   //   'react': 'React',
   //   'react-dom': 'ReactDOM'
   // }
-  config.plugins =config.plugins.concat([
+  config.plugins = config.plugins.concat([
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require('./manifest.json')
@@ -139,10 +144,10 @@ if (process.env.NODE_ENV === 'production') {
     new AddAssetHtmlPlugin({
       filepath: require.resolve("./vendor.js"),
       hash: true,
-      includeSourcemap:false
+      includeSourcemap: false
     }),
     //将css从js里抽取出来
-    new ExtractTextPlugin({filename:"[name].[hash:5].css", allChunks: true}),
+    new ExtractTextPlugin({filename: "[name].[hash:5].css", allChunks: true}),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '/static'),
@@ -173,7 +178,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
   // HMR support
-  config.plugins=config.plugins.concat( [
+  config.plugins = config.plugins.concat([
     //模块热替换
     new webpack.HotModuleReplacementPlugin(),
     //当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境(不知道什么鬼意思)

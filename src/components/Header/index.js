@@ -1,7 +1,6 @@
 import React from 'react'
 import {NavLink} from 'mirrorx'
 import {Menu, Icon} from 'antd'
-import jquery from 'jquery'
 const MenuItem = Menu.Item
 
 const Header = ({location}) => (

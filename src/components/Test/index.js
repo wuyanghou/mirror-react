@@ -1,13 +1,23 @@
 import React from 'react';
-import styles from './styles.less'
-class Test extends React.Component{
-  constructor(props){
+import {connect} from 'mirrorx';
+import styles from './styles.less';
+import Children from '../TestChildren/index';
+// import getWrappedInstance from 'UTIL/getWrappedInstance'
+
+class Test extends React.Component {
+  constructor(props) {
     super(props);
   }
-  render(){
-    return(
-      <h1 className={styles.test}>黄河落天走东海，万里写入胸怀间2</h1>
-    )
+
+  componentDidMount() {
+    //getWrappedInstance  connect原生提供的获取被包装的组件实例
+    this.$child.getWrappedInstance().sayHello()
+  }
+
+  render() {
+    return (<Children ref={e => this.$child = e}/>)
   }
 }
+
+
 export default Test

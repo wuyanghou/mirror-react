@@ -1,4 +1,7 @@
 import React from 'react'
+import {connect} from 'mirrorx';
+
+console.log(connect,123);
 import './style.less'
 const Home = () => (
   <div className="home">
