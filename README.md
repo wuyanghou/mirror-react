@@ -13,8 +13,8 @@ This is a Mirror example similar to [dva-example-user-dashboard](https://github.
 ### Quick Start
 
 ```sh
-$ git clone git@github.com:mirrorjs/user-dashboard-example.git
-$ cd user-dashboard-example
+$ git clone https://github.com/wuyanghou/mirror-react-router-4.0-asyncComponent-css-module.git
+$ cd mirror-react-router-4.0-asyncComponent-css-module
 $ npm i
 $ npm start
 ```
