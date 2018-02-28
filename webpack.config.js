@@ -126,7 +126,6 @@ const config = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-
   config.devtool = ''
 
   // Exclude react and react-dom in the production bundle
@@ -150,8 +149,8 @@ if (process.env.NODE_ENV === 'production') {
     new ExtractTextPlugin({filename: "[name].[hash:5].css", allChunks: true}),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '/static'),
-        to: config.build.assetsSubDirectory,
+        from: path.resolve(__dirname, 'static'),
+        to: path.resolve(__dirname, 'build/static'),
         ignore: ['.*']
       }
     ])
@@ -186,5 +185,4 @@ if (process.env.NODE_ENV === 'production') {
     // new ExtractTextPlugin({filename:"[name].[hash:5].css", allChunks: true})
   ]);
 }
-
 module.exports = config
