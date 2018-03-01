@@ -26,8 +26,9 @@ const config = {
     extensions: ['.js', '.json'],
     alias: {
       '@': resolve('src'),
-      '@static': resolve('static'),
-      'UTIL': resolve('src/utils')
+      'STATIC': resolve('static'),
+      'UTIL': resolve('src/utils'),
+      'ASSETS': resolve('src/assets')
     }
   },
   module: {
@@ -180,7 +181,7 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = config.plugins.concat([
     //模块热替换
     new webpack.HotModuleReplacementPlugin(),
-    //当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境(不知道什么鬼意思)
+    //当开启 HMR 的时候使用该插件会显示模块的相对路径,而不是id，建议用于开发环境(不知道什么鬼意思)
     new webpack.NamedModulesPlugin()
   ]);
 }
