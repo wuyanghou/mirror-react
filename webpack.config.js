@@ -18,7 +18,7 @@ const config = {
     './src/index.js'
   ],
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'app.js',
     publicPath: '/'
   },
@@ -150,7 +150,7 @@ if (process.env.NODE_ENV === 'production') {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'static'),
-        to: path.resolve(__dirname, 'build/static'),
+        to: path.resolve(__dirname, 'dist/static'),
         ignore: ['.*']
       }
     ])
@@ -159,7 +159,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   config.devtool = 'cheap-module-source-map'
   config.devServer = {
-    contentBase: path.resolve(__dirname),
+    // contentBase: path.resolve(__dirname),
     clientLogLevel: 'none',
     quiet: true,
     port: 8000,
@@ -181,8 +181,7 @@ if (process.env.NODE_ENV === 'production') {
     //模块热替换
     new webpack.HotModuleReplacementPlugin(),
     //当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境(不知道什么鬼意思)
-    new webpack.NamedModulesPlugin(),
-    // new ExtractTextPlugin({filename:"[name].[hash:5].css", allChunks: true})
+    new webpack.NamedModulesPlugin()
   ]);
 }
 module.exports = config
