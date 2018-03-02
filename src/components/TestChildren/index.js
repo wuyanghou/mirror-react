@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'mirrorx';
 import styles from './index.less'
+
+console.log('testChunkhash');
 let mapStateToProps = (state) => {
   return {};
 }

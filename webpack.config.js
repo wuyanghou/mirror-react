@@ -19,7 +19,8 @@ const config = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js',
+    //加上 chunkhash 可以防止缓存带来的影响
+    filename: 'app.[chunkhash].js',
     publicPath: '/'
   },
   resolve: {
@@ -181,8 +182,11 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = config.plugins.concat([
     //模块热替换
     new webpack.HotModuleReplacementPlugin(),
-    //当开启 HMR 的时候使用该插件会显示模块的相对路径,而不是id，建议用于开发环境(不知道什么鬼意思)
-    new webpack.NamedModulesPlugin()
+    //当开启 HMR 的时候使用该插件会显示模块的相对路径,而不是id，建议用于开发环境,这样修改其他js文件，commonChunk文件就不会重新打包（如果存在的话）
+    new webpack.NamedModulesPlugin(),
+    //或者
+    //用相对路径的Hash值来作为模块标识。推荐在生产环境中使用, 这样修改其他js文件，commonChunk文件就不会重新打包（如果存在的话）
+    // new webpack.HashedModuleIdsPlugin()
   ]);
 }
 module.exports = config
