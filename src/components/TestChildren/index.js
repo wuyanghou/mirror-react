@@ -22,7 +22,7 @@ export default class Child extends React.Component {
   }
 
   sayHello = () => {
-    console.log('hello');
+
   }
 
   render() {

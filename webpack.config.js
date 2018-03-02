@@ -19,8 +19,8 @@ const config = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    //加上 chunkhash 可以防止缓存带来的影响
-    filename: 'app.[chunkhash].js',
+    //开发环境下不要使用 chunkhash  文件会变成undefined
+    filename: 'app.js',
     publicPath: '/'
   },
   resolve: {
@@ -129,7 +129,7 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.devtool = ''
-
+  config.output.filename = 'app.[chunkhash].js';
   // Exclude react and react-dom in the production bundle
   // 不将第三方类库打包的方法之一，需要在index.html里手动引入依赖，例如cdn上的资源
   // config.externals = {
@@ -182,11 +182,11 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = config.plugins.concat([
     //模块热替换
     new webpack.HotModuleReplacementPlugin(),
-    //当开启 HMR 的时候使用该插件会显示模块的相对路径,而不是id，建议用于开发环境,这样修改其他js文件，commonChunk文件就不会重新打包（如果存在的话）
+    //用文件路径而非默认的数字ID来作为模块标识。当改变其他js文件时 不会重新打包common.js(如果存在的话)建议用于  开发环境
     new webpack.NamedModulesPlugin(),
     //或者
-    //用相对路径的Hash值来作为模块标识。推荐在生产环境中使用, 这样修改其他js文件，commonChunk文件就不会重新打包（如果存在的话）
+    //用相对路径的Hash值来作为模块标识。当改变其他js文件时 不会重新打包common.js(如果存在的话) 建议用于       生产环境
     // new webpack.HashedModuleIdsPlugin()
-  ]);
+]);
 }
 module.exports = config
