@@ -1,13 +1,49 @@
-import React from 'react'
-import {connect} from 'mirrorx';
+import React from 'react';
+import {connect, actions} from 'mirrorx';
+import './style.less';
 
-console.log(connect,123);
-import './style.less'
-const Home = () => (
-  <div className="home">
-    <h2>Welcome to Mirror!</h2>
-    <img src="https://img.alicdn.com/tfs/TB10AapSVXXXXXLXXXXXXXXXXXX-199-159.png" />
-  </div>
-)
+let mapStateToState = (state) => {
+  console.log(state);
+  return {}
+}
 
-export default Home
+@connect(mapStateToState)
+export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      num: 0
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
+  add = () => {
+    let {num} = this.state;
+    num += 1;
+    //调用方法一 {data} 需要与model中定义的一致
+    // let {dispatch} = this.props;
+    // dispatch({
+    //   type: 'users/save',
+    //   data: {num}
+    // })
+    //调用方法二
+    actions.users.save({num});
+    this.setState({num})
+  }
+
+  render() {
+    let {num} = this.state;
+    return (
+      <div className="home">
+        <h2>Welcome to Mirror!</h2>
+        <img src="https://img.alicdn.com/tfs/TB10AapSVXXXXXLXXXXXXXXXXXX-199-159.png"/>
+        <div style={{marginTop: 60}} onClick={this.add}>test models {num}</div>
+      </div>
+    )
+  }
+}
+
+

@@ -7,12 +7,15 @@ export default {
     list: [],
     loading: false,
     total: null,
-    page: null
+    page: null,
+    num:10
   },
   reducers: {
     save(state, data) {
+      console.log(state);
+      console.log(data);
       return {...state, ...data}
-    }
+    },
   },
   effects: {
     async load({page = 1}, getState) {

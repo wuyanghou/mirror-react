@@ -14,7 +14,8 @@
       "libraryName": "antd",
       "style": "css"
     }],
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    "react-hot-loader/babel"
   ]
 }
 

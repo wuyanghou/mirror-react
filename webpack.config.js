@@ -15,6 +15,7 @@ const config = {
   // in development,
   // 'webpack-dev-server/client' and 'webpac/hot/dev-server' will be automatically added
   entry: [
+    'react-hot-loader/patch',
     './src/index.js'
   ],
   output: {
@@ -159,10 +160,10 @@ if (process.env.NODE_ENV === 'production') {
   ])
 
 } else {
-  config.devtool = 'cheap-module-source-map'
+  config.devtool = 'cheap-module-eval-source-map'
   config.devServer = {
-    // contentBase: path.resolve(__dirname),
-    clientLogLevel: 'none',
+    contentBase: false,
+    clientLogLevel: 'warning',
     quiet: true,
     port: 8000,
     compress: true,

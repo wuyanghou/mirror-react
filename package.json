@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A project based on Mirror framework",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --inline  --open",
     "build": "cross-env NODE_ENV=production webpack -p",
     "buildDLL": "webpack --config webpack.dll.config.js"
   },
@@ -37,9 +37,10 @@
     "file-loader": "^1.1.10",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "react-hot-loader": "^4.0.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.9.1"
   }
 }
