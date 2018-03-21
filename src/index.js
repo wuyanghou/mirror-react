@@ -28,6 +28,6 @@ render(<AppContainer><Provider stores={stores}><App/></Provider></AppContainer>,
 if (module.hot) {
   module.hot.accept('./components/App', () => {
     const NewApp = require('./components/App').default;
-    render(<AppContainer><NewApp/></AppContainer>, document.getElementById('root'));
+    render(<AppContainer><Provider stores={stores}><NewApp/></Provider></AppContainer>, document.getElementById('root'));
   })
 }

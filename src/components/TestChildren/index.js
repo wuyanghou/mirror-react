@@ -44,6 +44,8 @@ export default class Child extends React.Component {
     setTimeout(() => {
       console.log(this.props.stores.fn());
       console.log(this.props.stores.age);
+      console.log(this.props.stores.age);
+      console.log(this.props.stores.name);
     }, 3000)
   }
 
@@ -51,6 +53,8 @@ export default class Child extends React.Component {
     return (
       <div>
         <h1>{this.props.stores.name}</h1>
+        <h1>123</h1>
+        <h1>123</h1>
         <h1>123</h1>
         <Son/>
       </div>
