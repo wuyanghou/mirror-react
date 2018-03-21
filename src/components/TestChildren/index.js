@@ -1,20 +1,30 @@
 import React from 'react';
+import {observer, inject} from "mobx-react";
+
+// import appState from '../../mobx';
 import {connect} from 'mirrorx';
-import styles from './index.less'
+
+import Son from '../Son';
 
 let mapStateToProps = (state) => {
   return {num: state.users.num};
 }
 
 let mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    save(num) {
+      dispatch({type: 'users/save', data: num})
+    }
+  };
 }
 
 let mergeProps = (stateProps, dispatchProps, ownProps) => {
   return Object.assign({}, ownProps, stateProps, dispatchProps);
 }
 
-@connect(mapStateToProps, mapDispatchToProps, mergeProps, {withRef: true})
+// @connect(mapStateToProps, mapDispatchToProps, mergeProps, {withRef: true})
+@inject('stores')
+@observer
 export default class Child extends React.Component {
   constructor(props) {
     super(props);
@@ -24,20 +34,25 @@ export default class Child extends React.Component {
 
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log(nextProps);
+    // console.log(nextState);
+    return true;
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      console.log(this.props.stores.fn());
+      console.log(this.props.stores.age);
+    }, 3000)
+  }
+
   render() {
-    let {num}=this.props;
     return (
       <div>
-        <h1 className={styles.red}>黄河落天走东海，万里写入胸怀间1</h1>
-        <div className="color-blue">蓝色ss1</div>
-        <div>测试速度123456789345678</div>
-        <div className="color-yellow">黄色2</div>
-        <div className="color-black">黑色3</div>
-        <div className="test">mixin</div>
-        <h2>{num}</h2>
-        <img src="../../../static/88.jpg" alt=""/>
-        <img src="../../../static/99.jpg" alt=""/>
-        <img src="./static/logo.png" alt=""/>
+        <h1>{this.props.stores.name}</h1>
+        <h1>123</h1>
+        <Son/>
       </div>
     )
   }

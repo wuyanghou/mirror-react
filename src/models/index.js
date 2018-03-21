@@ -16,6 +16,7 @@ export default {
       console.log(data);
       return {...state, ...data}
     },
+
   },
   effects: {
     async load({page = 1}, getState) {
