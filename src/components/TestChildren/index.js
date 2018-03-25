@@ -3,7 +3,7 @@ import {connect} from 'mirrorx';
 import {observer, inject} from "mobx-react";
 import {Button} from 'antd';
 import Pure from '../PureComponent/index';
-
+import ContextComponent from '../Context/index';
 
 let mapStateToProps = (state) => {
   return {num: state.users.num};
@@ -75,6 +75,7 @@ export default class Child extends React.Component {
         <br/>
         <Button onClick={this.changeObject}>点击pure改变对象</Button>
         <Pure data={data} list={list} obj={obj}/>
+        <ContextComponent/>
       </div>
     )
   }
