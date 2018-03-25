@@ -1,17 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Child from './contextChild/index';
-export default class ConTextComponent extends React.Component{
-  constructor(props){
+import Second from './contextChild/second';
+
+export default class ConTextComponent extends React.Component {
+  constructor(props) {
     super(props);
+    this.state={
+      color:'red',
+    }
   }
-   getChildContext= ()=>{
-    return {color: "purple"};
+
+  getChildContext = () => {
+    return {
+      color: this.state.color,
+      change:()=> {
+        this.setState({color:'blue'});
+      }
+    };
   }
-  render(){
-    return <Child/>
+
+  render() {
+    return (
+      <div>
+        <Child/>
+        <Second/>
+      </div>
+    )
   }
 }
 ConTextComponent.childContextTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
+  change: PropTypes.func
 };

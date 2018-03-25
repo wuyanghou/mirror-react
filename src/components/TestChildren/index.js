@@ -76,6 +76,8 @@ export default class Child extends React.Component {
         <Button onClick={this.changeObject}>点击pure改变对象</Button>
         <Pure data={data} list={list} obj={obj}/>
         <ContextComponent/>
+        <br/>
+        <div style={{marginTop:20}}></div>
       </div>
     )
   }
