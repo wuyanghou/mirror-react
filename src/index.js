@@ -4,13 +4,8 @@ import mirror, {render} from 'mirrorx';
 import {AppContainer} from 'react-hot-loader';
 import App from './components/App'
 
-import users from './models/index';
-
-
-//
 import {Provider} from 'mobx-react';
-import {observable, autorun} from 'mobx';
-//
+import users from './models/index';
 
 import stores from './mobx';
 

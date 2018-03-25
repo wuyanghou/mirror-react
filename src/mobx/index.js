@@ -1,15 +1,18 @@
-import {observable,autorun} from 'mobx';
-let appState=observable({
-  name:'luoming',
-  age:26,
-  fn(){
-    console.log(9999);
+import {observable,autorun,computed ,action} from 'mobx';
+class AppState {
+  @observable name='luoming';
+  @observable age=26;
+  @observable length=10;
+  @computed get total() {
+    return this.age * this.length;
   }
+  @action.bound
+  increment() {
+    this.age++ // 'this' 永远都是正确的
+  }
+}
+let appState=new AppState();
+autorun(()=>{
+  console.log(appState.age);
 })
-
-autorun(function() {
-  console.log(
-    appState
-  );
-});
 export default appState;

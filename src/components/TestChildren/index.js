@@ -1,10 +1,9 @@
 import React from 'react';
-import {observer, inject} from "mobx-react";
-
-// import appState from '../../mobx';
 import {connect} from 'mirrorx';
+import {observer, inject} from "mobx-react";
+import {Button} from 'antd';
+import Pure from '../PureComponent/index';
 
-import Son from '../Son';
 
 let mapStateToProps = (state) => {
   return {num: state.users.num};
@@ -28,6 +27,11 @@ let mergeProps = (stateProps, dispatchProps, ownProps) => {
 export default class Child extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      data:false,
+      list:[1,2,3,4,5],
+      obj:{age:26,name:'luoming'}
+    }
   }
 
   sayHello = () => {
@@ -41,22 +45,36 @@ export default class Child extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      console.log(this.props.stores.fn());
-      console.log(this.props.stores.age);
-      console.log(this.props.stores.age);
-      console.log(this.props.stores.name);
-    }, 3000)
-  }
 
+  }
+  changeList=()=>{
+    let {list}=this.state;
+    //list
+    list.push(9);
+    this.setState({list:[].concat(list)});
+    //pure 组件不会触发重新渲染
+    // this.setState({list})
+  }
+  changeObject=()=>{
+    let {obj}=this.state;
+    obj.name='xiaochang';
+    this.setState({obj:Object.assign({},obj)});
+  }
   render() {
+    let {data,list,obj}=this.state;
     return (
       <div>
         <h1>{this.props.stores.name}</h1>
-        <h1>123</h1>
-        <h1>123</h1>
-        <h1>123</h1>
-        <Son/>
+        <h1>{this.props.stores.age}</h1>
+        <h1>{this.props.stores.total}</h1>
+        <Button onClick={this.props.stores.increment}>点击</Button>
+        <br/>
+        <Button onClick={e=>this.setState({data:!data})}>点击pure</Button>
+        <br/>
+        <Button onClick={this.changeList}>点击pure改变数组</Button>
+        <br/>
+        <Button onClick={this.changeObject}>点击pure改变对象</Button>
+        <Pure data={data} list={list} obj={obj}/>
       </div>
     )
   }
