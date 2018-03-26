@@ -10,6 +10,7 @@
   "dependencies": {
     "antd": "^2.13.0",
     "babel-runtime": "^6.23.0",
+    "co": "^4.6.0",
     "html-webpack-plugin": "^2.30.1",
     "jquery": "^3.2.1",
     "mirrorx": "^0.2.0",

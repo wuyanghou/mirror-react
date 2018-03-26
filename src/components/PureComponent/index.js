@@ -10,6 +10,11 @@ export default class Pure extends React.PureComponent {
       array:[8,9]
     }
   }
+  static defaultProps = {
+    title: 'Undefined Product',
+    price: 100,
+    initialQty: 0
+  };
 
   click = () => {
     let {array}=this.state;
@@ -19,11 +24,11 @@ export default class Pure extends React.PureComponent {
   }
 
   render() {
-    console.log('pureComponent');
     let {list, data, obj} = this.props;
     let {color,array} = this.state;
     return (
-      <div>
+      <div style={{marginTop:50}}>
+        <hr/>
         <div>
           'pureComponent'
         </div>

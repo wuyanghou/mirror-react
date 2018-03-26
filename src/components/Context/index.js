@@ -22,7 +22,9 @@ export default class ConTextComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop:50}}>
+        <hr/>
+        <div>context</div>
         <Child/>
         <Second/>
       </div>

@@ -5,6 +5,8 @@ import {Button} from 'antd';
 import Pure from '../PureComponent/index';
 import ContextComponent from '../Context/index';
 
+import PropsComponent from '../DefaultPropsComponent/index';
+
 let mapStateToProps = (state) => {
   return {num: state.users.num};
 }
@@ -78,6 +80,7 @@ export default class Child extends React.Component {
         <ContextComponent/>
         <br/>
         <div style={{marginTop:20}}></div>
+        <PropsComponent/>
       </div>
     )
   }
