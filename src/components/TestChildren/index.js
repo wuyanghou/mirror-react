@@ -7,6 +7,8 @@ import ContextComponent from '../Context/index';
 
 import PropsComponent from '../DefaultPropsComponent/index';
 
+import Decorator from '../Decorator/index';
+
 let mapStateToProps = (state) => {
   return {num: state.users.num};
 }
@@ -81,6 +83,8 @@ export default class Child extends React.Component {
         <br/>
         <div style={{marginTop:20}}></div>
         <PropsComponent/>
+        <div style={{marginTop:30}}></div>
+        <Decorator/>
       </div>
     )
   }

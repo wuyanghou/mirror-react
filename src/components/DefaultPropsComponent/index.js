@@ -19,7 +19,8 @@ export default class PropsComponent extends React.PureComponent {
 
   componentDidMount() {
     this.g=this.g.bind(this);
-    co(this.g)
+    // co(this.g)
+    this.fn();
   }
   * g(){
     yield Promise.resolve(2).then((res)=>{console.log(res)});
@@ -30,6 +31,16 @@ export default class PropsComponent extends React.PureComponent {
       },3000)
     });
     yield Promise.resolve(3).then((res)=>{console.log(res)});
+  }
+  fn=async()=>{
+    await new Promise((res,rej)=>{
+      res()
+      setTimeout(()=>{
+         // res()
+        console.log(111);
+      },3000)
+    })
+    console.log(888);
   }
   render() {
     return (
