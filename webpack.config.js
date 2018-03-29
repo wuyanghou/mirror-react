@@ -115,6 +115,10 @@ const config = {
           limit: 10000,
           name: 'static/fonts/[name].[hash:7].[ext]'
         }
+      },
+      {
+        test: /\.webworker\.js$/,
+        use: { loader: 'worker-loader' }
       }
     ]
   },
