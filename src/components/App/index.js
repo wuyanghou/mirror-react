@@ -7,7 +7,7 @@ const Home=asyncComponent(()=>import('../Home'));
 const Users=asyncComponent(()=>import('../Users'));
 const Test=asyncComponent(()=>import('../Test'));
 const Webworker=asyncComponent(()=>import('../Webworker'));
-
+const Other=asyncComponent(()=>import('../Other'));
 const App = () => (
   <Router>
     <div>
@@ -16,6 +16,7 @@ const App = () => (
       <Route path="/users" component={Users} />
       <Route path="/test" component={Test} />
       <Route path="/webworker" component={Webworker} />
+      <Route path="/other" component={Other} />
     </div>
   </Router>
 )

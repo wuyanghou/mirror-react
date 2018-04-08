@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect, actions} from 'mirrorx';
 import './style.less';
-
+import Img from  '../../assets/88.jpg'
 let mapStateToState = (state) => {
   console.log(state);
   return {}
@@ -39,7 +39,7 @@ export default class Home extends React.Component {
     return (
       <div className="home">
         <h2>Welcome to Mirror!</h2>
-        <img src="https://img.alicdn.com/tfs/TB10AapSVXXXXXLXXXXXXXXXXXX-199-159.png"/>
+        <img src={Img}/>
         <div style={{marginTop: 60}} onClick={this.add}>test models {num}</div>
       </div>
     )
