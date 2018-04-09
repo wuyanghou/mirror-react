@@ -2,7 +2,7 @@ import React from 'react';
 
 import mirror, {render} from 'mirrorx';
 import {AppContainer} from 'react-hot-loader';
-import App from './components/App'
+import App from './routes/index'
 
 import {Provider} from 'mobx-react';
 import users from './models/index';
@@ -18,11 +18,11 @@ mirror.defaults({
 });
 
 // render(<App/>, document.getElementById('root'));
-render(<AppContainer><Provider stores={stores}><App/></Provider></AppContainer>, document.getElementById('root'));
+render(<AppContainer><Provider mainStore={stores}><App/></Provider></AppContainer>, document.getElementById('root'));
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    const NewApp = require('./components/App').default;
-    render(<AppContainer><Provider stores={stores}><NewApp/></Provider></AppContainer>, document.getElementById('root'));
+  module.hot.accept('./routes/index', () => {
+    const NewApp = require('./routes/index').default;
+    render(<AppContainer><Provider mainStore={stores}><NewApp/></Provider></AppContainer>, document.getElementById('root'));
   })
 }
